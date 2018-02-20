@@ -24,7 +24,7 @@ var keyStrokesCounter = 0;
 var computerPick = "";
 var guessDisplay = "";
 var numberGuesses = 0;
-var correctGuess = [];
+var userPick = [];
 
 // Step 2, Step 3, Step 4, Step 5
 // Start Button Function
@@ -33,6 +33,7 @@ function startGame() {
     console.log("Random Word: " + computerPick);
     var wordLength = computerPick.length;
     for (var i = 0; i < wordLength; i++) {
+        userPick.push("-");
         var wordChar = computerPick.charAt(i);
         var placeHolder = document.createElement("div");
         document.getElementById("word-divs").appendChild(placeHolder).setAttribute("class", wordChar + " place-holder letter-guessed");
@@ -74,11 +75,26 @@ document.onkeyup = function (event) {
     document.getElementById("letterGuessed").appendChild(guessed).setAttribute("class", "guessed-letters");
     document.getElementsByClassName("guessed-letters")[0].append(" " + keyChar);
     if (computerPick.includes(keyChar)) {
+        var keyIndex = computerPick.indexOf(keyChar);
+        userPick.splice(keyIndex, 1, keyChar);
         var x = document.getElementsByClassName(keyChar);
         for (var j = 0; j < x.length; j++) {
             x[j].innerHTML = keyChar;
             x[j].classList.remove("place-holder");
         }
+
+        // need to loop through entire computerPick string and compare each index before alerting "You Win!"
+        // for (var n = 0; n < computerPick.length; n++) {
+        //     if (computerPick[n] === userPick[n]) {
+        //         alert("you win!");
+        //     }
+        }
+
+        console.log("computer pick: " + computerPick);
+        console.log("user word: " + userPick);
+
+
+    
     }
 }
 
