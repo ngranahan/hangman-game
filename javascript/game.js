@@ -10,13 +10,21 @@
 // 9. If the user guess equals any letter in the string, that particular placeholder div should be replaced with the letter.
 // 10. If all of the letters in the string are selected before the number of guesses equals zero, a notification that the user won will display.
 // 11. If user guesses equals zero before the user selects all of the letters in the string, a notification that the user lost will display and ask the user to play again.
+// 12. keep track of wins
 
-// Issues: 1. had trouble figuring out how to start game with initial key stroke and collect user guesses with each following keystroke. Used start button to get around this first step. Will go back to fix if time allows.
+// Issues: 1. had trouble figuring out how to start game with initial key stroke and collect user guesses with each following keystroke. Used start button to get around this first step. Will go back to fix if time allows. 2. Determine if player has won. 3. 
 
-var words = ["car", "bicycle", "airplane", "train"];
+//Additional Steps If Time
+// 13. If var keyChar (letter guessed) != any letter that has already been guessed append keyChar to HTML, else do nothing
+// 14. If guessesLeft === wordLength display hint alert. Hint will be alert a rhyming word.
+//15.
+
+var words = ["milkshake", "cupcake", "sunday", "donut", "popsicle", "cake"];
 var keyStrokesCounter = 0;
 var computerPick = "";
+var guessDisplay = "";
 var numberGuesses = 0;
+var correctGuess = [];
 
 // Step 2, Step 3, Step 4, Step 5
 // Start Button Function
@@ -30,7 +38,29 @@ function startGame() {
         document.getElementById("word-divs").appendChild(placeHolder).setAttribute("class", wordChar + " place-holder letter-guessed");
     }
     numberGuesses = wordLength * 2;
-    document.getElementById("guesses").innerHTML = "Guesses Left: " + numberGuesses;
+    guessDisplay = document.createElement("div");
+    document.getElementById("guesses").appendChild(guessDisplay).setAttribute("class", "display-guesses");
+    document.getElementsByClassName("display-guesses")[0].innerHTML = numberGuesses;
+
+    if (computerPick === "milkshake") {
+        document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
+        document.getElementById("milkshake").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
+    } else if (computerPick === "cupcake") {
+        document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
+        document.getElementById("cupcake").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
+    } else if (computerPick === "sunday") {
+        document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
+        document.getElementById("sunday").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
+    } else if (computerPick === "donut") {
+        document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
+        document.getElementById("donut").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
+    } else if (computerPick === "popsicle") {
+        document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
+        document.getElementById("popsicle").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
+    } else if (computerPick === "cake") {
+        document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
+        document.getElementById("cake").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
+    }
 }
 
 // Step 6, Step 7, Step 8, Step 9
@@ -38,12 +68,17 @@ function startGame() {
 document.onkeyup = function (event) {
     keyStrokesCounter++
     var guessesLeft = numberGuesses - keyStrokesCounter;
-    document.getElementById("guesses").innerHTML = "Guesses Left: " + guessesLeft;
+    document.getElementsByClassName("display-guesses")[0].innerHTML = guessesLeft;
     var keyChar = String.fromCharCode(event.keyCode).toLowerCase();
-    document.getElementById("letters-guessed").append(keyChar + ", ");
+    var guessed = document.createElement("div");
+    document.getElementById("letterGuessed").appendChild(guessed).setAttribute("class", "guessed-letters");
+    document.getElementsByClassName("guessed-letters")[0].append(" " + keyChar);
     if (computerPick.includes(keyChar)) {
-        document.getElementsByClassName(keyChar)[0].innerHTML = keyChar;
-        document.getElementsByClassName(keyChar)[0].classList.remove("place-holder");
+        var x = document.getElementsByClassName(keyChar);
+        for (var j = 0; j < x.length; j++) {
+            x[j].innerHTML = keyChar;
+            x[j].classList.remove("place-holder");
+        }
     }
 }
 

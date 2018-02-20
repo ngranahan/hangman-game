@@ -1,21 +1,63 @@
 <!DOCTYPE html>
 <html>
+<head>
     <title>Hangman Game</title>
-    <link type="stylesheet" rel="text/css" src="css/reset.css">
-    <link type="stylesheet" rel="text/css" src="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="javascript/game.js"></script>
-    <body>
-        <h1>Hangman Game</h1>
-        <button onclick= "startGame()" id="start">Start Game</button>
-        <div id="guesses"></div>
-        <div id="key-strokes"></div>
-        <div id="word-divs" class="test"></div>
-        <div id="remaining-guesses"></div>
-        <div id="letters-guessed"></div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+    <script src="javascript/game.js"></script>  
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Sanchez" rel="stylesheet">
+</head>
 
-    </body>
-    
+<body>
+    <div class="jumbotron jumbotron-billboard">
+        <div class="img"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Hangman with Sprinkles</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img id="gummy" class="img-responsive center-block img-active" src="images/gummy.jpg">
+                <img id="milkshake" class="img-responsive center-block hide" src="images/milkshake.jpg">
+                <img id="cupcake" class="img-responsive center-block hide" src="images/cupcake.jpg">
+                <img id="sunday" class="img-responsive center-block hide" src="images/sunday.jpg">
+                <img id="donut" class="img-responsive center-block hide" src="images/donut.jpg">
+                <img id="popsicle" class="img-responsive center-block hide" src="images/popsicles.jpg">
+                <img id="cake" class="img-responsive center-block hide" src="images/cake.jpg">
+                <div id="wins">
+                    <h1>Wins:</h1>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <button onclick="startGame()" id="start" class="btn btn-lg">Play Game</button>
+                <div id="word-divs" class="clearfix">
+                    <h2>Current Word:</h2>
+                </div>
+                <div id="guesses">
+                    <h2>Remaining Guesses:</h2>
+                </div>
+                <div id="letterGuessed">
+                        <h2>Letters Guessed:</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="key-strokes"></div>
+
+    <div id="remaining-guesses"></div>
+    <div id="letters-guessed"></div>
+
+</body>
+
 </html>
