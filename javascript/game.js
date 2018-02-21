@@ -25,6 +25,7 @@ var computerPick = "";
 var guessDisplay = "";
 var numberGuesses = 0;
 var userPick = [];
+var wins = 0;
 
 // Step 2, Step 3, Step 4, Step 5
 // Start Button Function
@@ -43,6 +44,7 @@ function startGame() {
     document.getElementById("guesses").appendChild(guessDisplay).setAttribute("class", "display-guesses");
     document.getElementsByClassName("display-guesses")[0].innerHTML = numberGuesses;
 
+    //changes image to match computer selected word
     if (computerPick === "milkshake") {
         document.getElementsByClassName("img-active")[0].setAttribute("class", "img-responsive center-block hide");
         document.getElementById("milkshake").setAttribute("class", "img-responsive center-block img-active").classList.remove("hide");
@@ -83,20 +85,26 @@ document.onkeyup = function (event) {
             x[j].classList.remove("place-holder");
         }
 
-        // need to loop through entire computerPick string and compare each index before alerting "You Win!"
-        // for (var n = 0; n < computerPick.length; n++) {
-        //     if (computerPick[n] === userPick[n]) {
-        //         alert("you win!");
-        //     }
+        //determines wins and losses
+        if (computerPick.length !== userPick.length)
+            return false;
+        for (var a = computerPick.length; a--;) {
+            if (computerPick[a] !== userPick[a])
+                return false;
         }
+        alert("you win");
+        wins++
+        var displayWins = document.createElement("div");
+        document.getElementById("wins").appendChild(displayWins).setAttribute("class", "win-count");
+        document.getElementsByClassName("win-count")[0].innerHTML = wins;
 
-        console.log("computer pick: " + computerPick);
-        console.log("user word: " + userPick);
-
-
-    
     }
+
+
+
+
 }
+
 
 
 

@@ -46,6 +46,14 @@ img {
     font-family: 'Anton', sans-serif;
     color: white;
     padding: 5px 5px 5px 10px;
+    position: relative;
+}
+
+.win-count {
+    position: absolute;
+    left: 100px;
+    top: 27px;
+    font-size: 2em;
 }
 
 .btn {
