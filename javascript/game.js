@@ -24,12 +24,18 @@ var keyStrokesCounter = 0;
 var computerPick = "";
 var guessDisplay = "";
 var numberGuesses = 0;
+var guessesLeft = 0;
 var userPick = [];
 var wins = 0;
+var indices = [];
 
 // Step 2, Step 3, Step 4, Step 5
 // Start Button Function
 function startGame() {
+    document.getElementById("word-divs").innerHTML = "";
+    document.getElementById("letterGuessed").innerHTML = "";
+    userPick = [];
+    keyStrokesCounter = 0;
     computerPick = words[Math.floor(Math.random() * words.length)]
     console.log("Random Word: " + computerPick);
     var wordLength = computerPick.length;
@@ -37,7 +43,7 @@ function startGame() {
         userPick.push("-");
         var wordChar = computerPick.charAt(i);
         var placeHolder = document.createElement("div");
-        document.getElementById("word-divs").appendChild(placeHolder).setAttribute("class", wordChar + " place-holder letter-guessed");
+        document.getElementById("word-divs").appendChild(placeHolder).setAttribute("class", wordChar + " place-holder letter-guessed"); 
     }
     numberGuesses = wordLength * 2;
     guessDisplay = document.createElement("div");
@@ -70,15 +76,21 @@ function startGame() {
 
 document.onkeyup = function (event) {
     keyStrokesCounter++
-    var guessesLeft = numberGuesses - keyStrokesCounter;
+    guessesLeft = numberGuesses - keyStrokesCounter;
     document.getElementsByClassName("display-guesses")[0].innerHTML = guessesLeft;
     var keyChar = String.fromCharCode(event.keyCode).toLowerCase();
     var guessed = document.createElement("div");
     document.getElementById("letterGuessed").appendChild(guessed).setAttribute("class", "guessed-letters");
     document.getElementsByClassName("guessed-letters")[0].append(" " + keyChar);
     if (computerPick.includes(keyChar)) {
-        var keyIndex = computerPick.indexOf(keyChar);
-        userPick.splice(keyIndex, 1, keyChar);
+
+        //finds each index for characters that appear multiple times and pushes them to their specific location in userPick array
+        for (var n = 0; n < computerPick.length; n++) {
+            if (computerPick[n] === keyChar) {
+                userPick.splice(n, 1, keyChar);
+            }
+        }
+
         var x = document.getElementsByClassName(keyChar);
         for (var j = 0; j < x.length; j++) {
             x[j].innerHTML = keyChar;
@@ -92,12 +104,11 @@ document.onkeyup = function (event) {
             if (computerPick[a] !== userPick[a])
                 return false;
         }
-        alert("you win");
+        // alert("you win");
         wins++
         var displayWins = document.createElement("div");
         document.getElementById("wins").appendChild(displayWins).setAttribute("class", "win-count");
         document.getElementsByClassName("win-count")[0].innerHTML = wins;
-
     }
 
 
