@@ -30,7 +30,7 @@
                 <img id="gummy" class="img-responsive center-block img-active" src="images/gummy.jpg">
                 <img id="milkshake" class="img-responsive center-block hide" src="images/milkshake.jpg">
                 <img id="cupcake" class="img-responsive center-block hide" src="images/cupcake.jpg">
-                <img id="sunday" class="img-responsive center-block hide" src="images/sunday.jpg">
+                <img id="sundae" class="img-responsive center-block hide" src="images/sunday.jpg">
                 <img id="donut" class="img-responsive center-block hide" src="images/donut.jpg">
                 <img id="popsicle" class="img-responsive center-block hide" src="images/popsicles.jpg">
                 <img id="cake" class="img-responsive center-block hide" src="images/cake.jpg">
@@ -39,12 +39,16 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <button onclick="startGame()" id="start" class="btn btn-lg">Play Game</button>
+                <div class="relative">
+                    <button onclick="startGame()" id="start" class="btn btn-lg">Play Game</button>
+                    <div id="winAlert"></div>
+                    <div id="loseAlert"></div>
+                </div>
                 <div>
                     <h2>Current Word:</h2>
                     <div id="word-divs" class="clearfix"></div>
                 </div>
-                <div id="guesses">
+                <div id="guesses" class="relative">
                     <h2>Remaining Guesses:</h2>
                 </div>
                 <div>

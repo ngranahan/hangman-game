@@ -11,7 +11,7 @@ h2 {
     color: rgb(80, 76, 80);
 }
 
-.display-guesses, .guessed-letters {
+.display-guesses, #letterGuessed {
     color: rgb(80, 76, 80);
     font-family: 'Anton', sans-serif;
     font-size: 2em;
@@ -31,6 +31,7 @@ h2 {
     background-color: rgba(236, 0, 140, .6);
     width: 635px;
     padding: 10px;
+    margin: 0 auto;
 }
 
 img {
@@ -83,7 +84,23 @@ img {
     border-bottom: 2px solid rgb(236, 0, 140);
 }
 
+.display-guesses {
+    position: absolute;
+    left: 300px;
+    top: -3px;
+}
+
 .hide {
     display: none;
+}
+
+.relative {
+    position: relative;
+}
+
+.special {
+ position: absolute;
+ top: -2px;
+ left: 25%;
 }
 
